@@ -64,16 +64,28 @@ const modalDetailsArea = (modals) => {
           <h5 class="card-title">${modals.description}</h5>
          <div class="d-flex justify-content-around gap-4">
          <div class="text-success">
-         <p class="m-0 p-0">${modals.pricing[0].price}</p>
-         <p class="m-0 p-0">${modals.pricing[0].plan}</p>
+         <p class="m-0 p-0">${
+           modals.pricing ? `${modals.pricing[0].price}` : "free of cost"
+         }</p>
+         <p class="m-0 p-0">${
+           modals.pricing ? `${modals.pricing[0].price}` : "free of cost"
+         }</p>
          </div>
          <div class="text-primary">
-         <p class="m-0 p-0">${modals.pricing[1].price}</p>
-         <p class="m-0 p-0">${modals.pricing[1].plan}</p>
+         <p class="m-0 p-0">${
+           modals.pricing ? `${modals.pricing[1].price}` : "free of cost"
+         }</p>
+         <p class="m-0 p-0">${
+           modals.pricing ? `${modals.pricing[1].price}` : "free of cost"
+         }</p>
          </div>
          <div class="text-danger">
-         <p class="m-0 p-0">${modals.pricing[2].price}</p>
-         <p class="m-0 p-0">${modals.pricing[2].plan}</p>
+         <p class="m-0 p-0">${
+           modals.pricing ? `${modals.pricing[2].price}` : "free of cost"
+         }</p>
+         <p class="m-0 p-0">${
+           modals.pricing ? `${modals.pricing[2].price}` : "free of cost"
+         }</p>
          </div>
          </div>
         <div class="d-flex justify-content-between mt-4">
@@ -89,17 +101,17 @@ const modalDetailsArea = (modals) => {
             <h6>Integrations</h6>
             <ul>
               <li>${
-                modals.integrations[0]
+                modals.integrations
                   ? `${modals.integrations[0]}`
                   : "no data found"
               }</li>
               <li>${
-                modals.integrations[1]
+                modals.integrations
                   ? `${modals.integrations[1]}`
                   : "no data found"
               }</li>
               <li>${
-                modals.integrations[2]
+                modals.integrations
                   ? `${modals.integrations[2]}`
                   : "no data found"
               }</li>
@@ -117,9 +129,13 @@ const modalDetailsArea = (modals) => {
           modals.accuracy.score ? `${modals.accuracy.score}"% accuracy"` : ""
         }</span>
         <div class="card-body">
-          <h5 class="card-title">${modals.input_output_examples[0].input}</h5>
+          <h5 class="card-title">${
+            modals.input_output_examples
+              ? `${modals.input_output_examples[0].input}`
+              : "no data found"
+          }</h5>
           <p class="card-text">${
-            modals.input_output_examples[0].output
+            modals.input_output_examples
               ? `${modals.input_output_examples[0].output}`
               : "No Data Founded"
           }</p>
