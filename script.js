@@ -1,20 +1,15 @@
-const dataLodedSection = () => {
+const dataLodedSection = (dataSort) => {
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
     .then((data) => {
       showdataSection(data.data.tools);
     });
 };
-const showdataSection = (data) => {
-  //   slice show btn 6 content
-  const seeMor = document.getElementById("see_mor");
-  if (data.length > 6) {
-    data = data.slice(0, 6);
-    seeMor.classList.remove("d-none");
-  }
 
+const showdataSection = (data) => {
   //   show product or content
   const showData = document.getElementById("show_data");
+
   data.forEach((datas) => {
     // console.log(datas.features);
     const divArea = document.createElement("div");
@@ -49,8 +44,6 @@ const showdataSection = (data) => {
   });
 };
 
-// document.getElementById("btn_see").addEventListener("click", (data) => {});
-
 const showModalArea = (id) => {
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   fetch(url)
@@ -59,7 +52,7 @@ const showModalArea = (id) => {
 };
 
 const modalDetailsArea = (modals) => {
-  console.log(modals.accuracy.score);
+  console.log(modals);
   const modalOpen = document.getElementById("modal_open");
   modalOpen.innerHTML = "";
   const modalDiv = document.createElement("div");
@@ -137,5 +130,18 @@ const modalDetailsArea = (modals) => {
   `;
   modalOpen.appendChild(modalDiv);
 };
+
+const toggaleSnipper = (loading) => {
+  const loaderId = document.getElementById("loded_area");
+  if (loading) {
+    loaderId.classList.remove("d-none");
+  } else {
+    loaderId.classList.add("d-none");
+  }
+};
+
+document.getElementById("btn_see").addEventListener("click", () => {
+  dataLodedSection();
+});
 
 dataLodedSection();
