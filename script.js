@@ -7,11 +7,11 @@ const dataLodedSection = () => {
 };
 const showdataSection = (data) => {
   //   slice show btn 6 content
-  /*   const seeMor = document.getElementById("see_mor");
+  const seeMor = document.getElementById("see_mor");
   if (data.length > 6) {
     data = data.slice(0, 6);
     seeMor.classList.remove("d-none");
-  } */
+  }
 
   //   show product or content
   const showData = document.getElementById("show_data");
@@ -96,9 +96,21 @@ const modalDetailsArea = (modals) => {
             <div>
             <h6>Integrations</h6>
             <ul>
-              <li>${modals.integrations[0]}</li>
-              <li>${modals.integrations[1]}</li>
-              <li>${modals.integrations[2]}</li>
+              <li>${
+                modals.integrations[0]
+                  ? `${modals.integrations[0]}`
+                  : "no data found"
+              }</li>
+              <li>${
+                modals.integrations[1]
+                  ? `${modals.integrations[1]}`
+                  : "no data found"
+              }</li>
+              <li>${
+                modals.integrations[2]
+                  ? `${modals.integrations[2]}`
+                  : "no data found"
+              }</li>
             </ul>
             </div>
             </div>
@@ -114,7 +126,11 @@ const modalDetailsArea = (modals) => {
         }</span>
         <div class="card-body">
           <h5 class="card-title">${modals.input_output_examples[0].input}</h5>
-          <p class="card-text">${modals.input_output_examples[0].output}</p>
+          <p class="card-text">${
+            modals.input_output_examples[0].output
+              ? `${modals.input_output_examples[0].output}`
+              : "No Data Founded"
+          }</p>
         </div>
         </div>
  </div>
