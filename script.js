@@ -8,8 +8,7 @@ const dataLodedSection = (dataSort) => {
 
 const showdataSection = (data) => {
   //   show product or content
-  const showData = document.getElementById("show_data");
-
+  toggaleSnipper(true);
   data.forEach((datas) => {
     // console.log(datas.features);
     const divArea = document.createElement("div");
@@ -139,9 +138,11 @@ const toggaleSnipper = (loading) => {
     loaderId.classList.add("d-none");
   }
 };
+const showData = document.getElementById("show_data");
 
 document.getElementById("btn_see").addEventListener("click", () => {
   dataLodedSection();
+  toggaleSnipper(false);
 });
 
 dataLodedSection();
