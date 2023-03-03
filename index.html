@@ -18,11 +18,42 @@
   </head>
   <body>
     <header class="p-6 container d-flex justify-content-center mt-4">
-      <h1>AI Universe Hub</h1>
+      <h1 class="w-25">AI Universe Hub</h1>
     </header>
     <main class="container">
       <section>
         <div id="show_data" class="row row-cols-1 row-cols-md-3 g-4 p-4"></div>
+
+        <div id="see_mor" class="text-center p-5 d-none">
+          <div id="btn_see" class="btn btn-primary">see mor</div>
+        </div>
+      </section>
+      <section>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered mw-100 w-75">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button
+                  type="button"
+                  class="btn-close bg-danger"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div id="modal_open"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <!-- js added -->
