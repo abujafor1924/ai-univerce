@@ -169,6 +169,22 @@ const modalDetailsArea = (modals) => {
   modalOpen.appendChild(modalDiv);
 };
 
+// data shorting
+const sortData = () => {
+  fetch("https://openapi.programming-hero.com/api/ai/tools")
+    .then((res) => res.json())
+    .then((data) => {
+      sortHandlr(data.data.tools);
+    });
+};
+const sortHandlr = (data) => {
+  const dataSort = data.sort(
+    (a, b) => new Date(b.published_in) - new Date(a.published_in)
+  );
+  // console.log(dataSort);
+  showdataSection(dataSort);
+};
+
 dataLodedSection();
 
 // see button Work
