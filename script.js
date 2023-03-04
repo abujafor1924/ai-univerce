@@ -1,14 +1,24 @@
 const dataLodedSection = () => {
+  toggleSpiner(true);
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
     .then((data) => {
       showdataSection(data.data.tools.slice(0, 6));
-      toggleSpiner(true);
     });
 };
 
+// toogle Spinnere
+const toggleSpiner = (isloding) => {
+  const loaderId = document.getElementById("loded_area");
+  if (isloding) {
+    loaderId.classList.remove("d-none");
+  } else {
+    loaderId.classList.add("d-none");
+  }
+};
+
+//  data Display
 const showdataSection = (data) => {
-  toggleSpiner(false);
   // btn condition
   const seeMore = document.getElementById("see_mor");
   if (data.length > 6) {
@@ -53,6 +63,7 @@ const showdataSection = (data) => {
      `;
     showData.appendChild(divArea);
   });
+  toggleSpiner(false);
 };
 
 const showModalArea = (id) => {
@@ -163,15 +174,6 @@ const modalDetailsArea = (modals) => {
 };
 
 dataLodedSection();
-// toogle Spinnere
-const toggleSpiner = (isloding) => {
-  const loaderId = document.getElementById("loded_area");
-  if (isloding) {
-    loaderId.classList.remove("d-none");
-  } else {
-    loaderId.classList.add("d-none");
-  }
-};
 
 // see button Work
 document.getElementById("btn_see").addEventListener("click", () => {
