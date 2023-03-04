@@ -1,12 +1,4 @@
-document.getElementById("btn_see").addEventListener("click", () => {
-  fetch("https://openapi.programming-hero.com/api/ai/tools")
-    .then((res) => res.json())
-    .then((data) => {
-      showdataSection(data.data.tools);
-    });
-});
-
-const dataLodedSection = () => {
+const dataLodedSection = (data) => {
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
     .then((data) => {
@@ -14,16 +6,27 @@ const dataLodedSection = () => {
     });
 };
 
+const toggaleSnipper = (loading) => {
+  const loaderId = document.getElementById("loded_area");
+  if (loading) {
+    loaderId.classList.remove("d-none");
+  } else {
+    loaderId.classList.add("d-none");
+  }
+};
 const showdataSection = (data) => {
+  // btn condition
   const seeMore = document.getElementById("see_mor");
-
+  if (data.length > 6) {
+    seeMore.classList.add("d-none");
+  }
   //   show product or content
-
   toggaleSnipper(true);
+  const showData = document.getElementById("show_data");
+  showData.innerHTML = "";
   data.forEach((datas) => {
     // console.log(datas.features);
-    const showData = document.getElementById("show_data");
-    // showData.innerHTML = "";
+
     const divArea = document.createElement("div");
     divArea.classList.add("col");
     divArea.innerHTML = `
@@ -71,7 +74,7 @@ const modalDetailsArea = (modals) => {
   modalDiv.classList.add("col");
 
   modalDiv.innerHTML = `
- <div class="d-flex justify-content-around gap-3 ">
+ <div class="d-lg-flex justify-content-around gap-3  ">
         <div class="card border border-danger rounded p-4">
         <div class="card-body">
           <h5 class="card-title">${modals.description}</h5>
@@ -159,18 +162,14 @@ const modalDetailsArea = (modals) => {
   modalOpen.appendChild(modalDiv);
 };
 
-const toggaleSnipper = (loading) => {
-  const loaderId = document.getElementById("loded_area");
-  if (loading) {
-    loaderId.classList.remove("d-none");
-  } else {
-    loaderId.classList.add("d-none");
-  }
-};
+dataLodedSection();
 
 document.getElementById("btn_see").addEventListener("click", () => {
-  dataLodedSection();
+  fetch("https://openapi.programming-hero.com/api/ai/tools")
+    .then((res) => res.json())
+    .then((data) => {
+      showdataSection(data.data.tools);
+    });
+
   toggaleSnipper(false);
 });
-
-dataLodedSection();
