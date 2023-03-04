@@ -1,16 +1,29 @@
-const dataLodedSection = (dataSort) => {
+document.getElementById("btn_see").addEventListener("click", () => {
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
     .then((data) => {
       showdataSection(data.data.tools);
     });
+});
+
+const dataLodedSection = () => {
+  fetch("https://openapi.programming-hero.com/api/ai/tools")
+    .then((res) => res.json())
+    .then((data) => {
+      showdataSection(data.data.tools.slice(0, 6));
+    });
 };
 
 const showdataSection = (data) => {
+  const seeMore = document.getElementById("see_mor");
+
   //   show product or content
+
   toggaleSnipper(true);
   data.forEach((datas) => {
     // console.log(datas.features);
+    const showData = document.getElementById("show_data");
+    // showData.innerHTML = "";
     const divArea = document.createElement("div");
     divArea.classList.add("col");
     divArea.innerHTML = `
@@ -154,7 +167,6 @@ const toggaleSnipper = (loading) => {
     loaderId.classList.add("d-none");
   }
 };
-const showData = document.getElementById("show_data");
 
 document.getElementById("btn_see").addEventListener("click", () => {
   dataLodedSection();
