@@ -1,27 +1,23 @@
-const dataLodedSection = (data) => {
+const dataLodedSection = () => {
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
     .then((data) => {
       showdataSection(data.data.tools.slice(0, 6));
+      toggleSpiner(true);
     });
 };
 
-const toggaleSnipper = (loading) => {
-  const loaderId = document.getElementById("loded_area");
-  if (loading) {
-    loaderId.classList.remove("d-none");
-  } else {
-    loaderId.classList.add("d-none");
-  }
-};
 const showdataSection = (data) => {
+  toggleSpiner(false);
   // btn condition
   const seeMore = document.getElementById("see_mor");
   if (data.length > 6) {
     seeMore.classList.add("d-none");
   }
+  // data speen Loding
+
   //   show product or content
-  toggaleSnipper(true);
+
   const showData = document.getElementById("show_data");
   showData.innerHTML = "";
   data.forEach((datas) => {
@@ -84,7 +80,7 @@ const modalDetailsArea = (modals) => {
            modals.pricing ? `${modals.pricing[0].price}` : "free of cost"
          }</p>
          <p class="m-0 p-0">${
-           modals.pricing ? `${modals.pricing[0].price}` : "free of cost"
+           modals.pricing ? `${modals.pricing[0].plan}` : "free of cost"
          }</p>
          </div>
          <div class="text-primary">
@@ -92,15 +88,19 @@ const modalDetailsArea = (modals) => {
            modals.pricing ? `${modals.pricing[1].price}` : "free of cost"
          }</p>
          <p class="m-0 p-0">${
-           modals.pricing ? `${modals.pricing[1].price}` : "free of cost"
+           modals.pricing ? `${modals.pricing[1].plan}` : "free of cost"
          }</p>
          </div>
          <div class="text-danger">
          <p class="m-0 p-0">${
-           modals.pricing ? `${modals.pricing[2].price}` : "free of cost"
+           modals.pricing
+             ? `${modals.pricing[2].price}`
+             : (modals.pricing = 0 ? "free of cost" : "free of cost")
          }</p>
          <p class="m-0 p-0">${
-           modals.pricing ? `${modals.pricing[2].price}` : "free of cost"
+           modals.pricing
+             ? `${modals.pricing[2].plan}`
+             : (modals.pricing = 0 ? "free" : "free of cost")
          }</p>
          </div>
          </div>
@@ -163,13 +163,21 @@ const modalDetailsArea = (modals) => {
 };
 
 dataLodedSection();
+// toogle Spinnere
+const toggleSpiner = (isloding) => {
+  const loaderId = document.getElementById("loded_area");
+  if (isloding) {
+    loaderId.classList.remove("d-none");
+  } else {
+    loaderId.classList.add("d-none");
+  }
+};
 
+// see button Work
 document.getElementById("btn_see").addEventListener("click", () => {
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
     .then((data) => {
       showdataSection(data.data.tools);
     });
-
-  toggaleSnipper(false);
 });
