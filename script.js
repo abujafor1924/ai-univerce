@@ -1,4 +1,4 @@
-const dataLodedSection = () => {
+const dataLodedSection = (date) => {
   toggleSpiner(true);
   fetch("https://openapi.programming-hero.com/api/ai/tools")
     .then((res) => res.json())
@@ -7,6 +7,12 @@ const dataLodedSection = () => {
     });
 };
 
+document.getElementById("sortData").addEventListener("click", () => {
+  const showSection = data.data.tools.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+  showdataSection(showSection);
+});
 // toogle Spinnere
 const toggleSpiner = (isloding) => {
   const loaderId = document.getElementById("loded_area");
