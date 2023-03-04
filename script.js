@@ -7,12 +7,6 @@ const dataLodedSection = (date) => {
     });
 };
 
-document.getElementById("sortData").addEventListener("click", () => {
-  const showSection = data.data.tools.sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  );
-  showdataSection(showSection);
-});
 // toogle Spinnere
 const toggleSpiner = (isloding) => {
   const loaderId = document.getElementById("loded_area");
@@ -30,15 +24,11 @@ const showdataSection = (data) => {
   if (data.length > 6) {
     seeMore.classList.add("d-none");
   }
-  // data speen Loding
-
-  //   show product or content
 
   const showData = document.getElementById("show_data");
   showData.innerHTML = "";
   data.forEach((datas) => {
-    // console.log(datas.features);
-
+    // console.log(data);
     const divArea = document.createElement("div");
     divArea.classList.add("col");
     divArea.innerHTML = `
